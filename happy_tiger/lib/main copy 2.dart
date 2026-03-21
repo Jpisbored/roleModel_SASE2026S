@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const StartPage());
@@ -43,7 +41,6 @@ class _MyHomePageState extends State<MyStarterPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Color(0x002B2D42),
       appBar: AppBar(
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -55,30 +52,11 @@ class _MyHomePageState extends State<MyStarterPage> {
 
           mainAxisAlignment: .center,
           children: [
-            Text('With Courage', 
-                  style: GoogleFonts.merriweather(
-                  color: Colors.white,
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                ),),
-            Text('comes Happiness', 
-                        style:  GoogleFonts.merriweather(
-                        color: Colors.white,
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                  ),),
-            SizedBox(height: 40),
-            ElevatedButton(onPressed: () {  }, 
-                            child: Text("New Session"),),
-            ElevatedButton(onPressed: () {  }, 
-                            child: Text("Load Session"),),
-            Text('Dedicated to Fronchetti and his Drunk Tiger robotics project', 
-                  style: GoogleFonts.merriweather(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                  fontStyle: FontStyle.italic,
-                ),),
-            Image.asset("Fronchetti_Glasses.png")
+            const Text('You have pushed the button this many times:'),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ],
         ),
       ),
@@ -87,7 +65,6 @@ class _MyHomePageState extends State<MyStarterPage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-      
     );
   }
 }

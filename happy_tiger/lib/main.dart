@@ -1,6 +1,33 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:math';
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
+
+const baseURL = 'http://100.89.135.68:8000';
+
+Future<void> createSession() async {
+  final url = Uri.parse('$baseURL/add_session');
+
+  final response = await http.post(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: jsonEncode({
+      'id': getRandomString(16),
+      'datetime': DateTime.now().toIso8601String(),
+    }),
+  );
+}
 
 void main() {
   runApp(const StartPage());
@@ -68,8 +95,11 @@ class _MyHomePageState extends State<MyStarterPage> {
                         fontWeight: FontWeight.bold,
                   ),),
             SizedBox(height: 40),
-            ElevatedButton(onPressed: () {  }, 
-                            child: Text("New Session"),),
+            ElevatedButton(onPressed: () async{  
+                                      await createSession();
+                                       }, 
+                            child: Text("New Session"),
+                          ),
             ElevatedButton(onPressed: () {  }, 
                             child: Text("Load Session"),),
             Text('Dedicated to Fronchetti and his Drunk Tiger robotics project', 

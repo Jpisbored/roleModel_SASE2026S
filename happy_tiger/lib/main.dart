@@ -1,5 +1,6 @@
 import 'new.dart';
 import 'load.dart';
+import 'example_backup.dart';
 import 'explanation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -121,7 +122,8 @@ class _MyHomePageState extends State<MyStarterPage> {
             ),
             SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
+                await createSession();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => NewSession()),
@@ -153,6 +155,26 @@ class _MyHomePageState extends State<MyStarterPage> {
                 'Load Session',
                 style: GoogleFonts.merriweather(
                   fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExamplePage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFBD8B5F),
+              ),
+              child: Text(
+                'Ex Bar Pg',
+                style: GoogleFonts.merriweather(
+                  fontSize: 15,
+                  color: Color(0xFF2B2D42),
                   fontWeight: FontWeight.bold,
                 ),
               ),

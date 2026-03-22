@@ -121,7 +121,8 @@ class _MyHomePageState extends State<MyStarterPage> {
             ),
             SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
+                await createSession();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => NewSession()),

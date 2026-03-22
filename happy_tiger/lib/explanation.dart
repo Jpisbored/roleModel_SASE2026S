@@ -34,24 +34,81 @@ class _MyHomePageState extends State<ExplainPage> {
           children: [
             Image.asset("assets/images/Fronchetti_Cowboy.png", width: 580, height: 300),
             SizedBox(height: 40),
-            Align(
-              alignment: Alignment.center,
-              child: ShaderMask(
-              shaderCallback: (bounds) => LinearGradient(
-                colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ).createShader(bounds),
-              child: Text(
-                'Who doesn’t like an adventure and to learn about the hobbies and weekend activities of your fellow LSU students and Baton Rouge residents? Go on your own adventure! Go to Tigerland! See how much of the BR College Bar Experience you can get through!',
-                style: GoogleFonts.merriweather(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+            ShaderMask(
+                shaderCallback: (bounds) => LinearGradient(
+                  colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ).createShader(bounds),
+                child: Column(
+                  children: [
+                    Text(
+                      'Who doesn’t like an adventure and',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'to learn about the hobbies and',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'weekend activities of your fellow',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'LSU students and Baton Rouge',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'residents? Go on your own',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'adventure! Go to Tigerland! See',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'how much of the BR College Bar',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Experience you can get through!',
+                      style: GoogleFonts.merriweather(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            )
           ],
         ),
       ),

@@ -3,6 +3,33 @@ import 'load.dart';
 import 'explanation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:math';
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
+
+const baseURL = 'http://100.89.135.68:8000';
+
+Future<void> createSession() async {
+  final url = Uri.parse('$baseURL/add_session');
+
+  final response = await http.post(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: jsonEncode({
+      'id': getRandomString(16),
+      'datetime': DateTime.now().toIso8601String(),
+    }),
+  );
+}
 
 void main() {
   runApp(const StartPage());

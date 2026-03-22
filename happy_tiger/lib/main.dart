@@ -1,5 +1,7 @@
+import 'new.dart';
+import 'load.dart';
+import 'explanation.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -41,9 +43,9 @@ class StartPage extends StatelessWidget {
     return MaterialApp(
       title: 'Happy Tiger',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Color(0x00AABA9E)),
+        colorScheme: .fromSeed(seedColor: Color(0xFFAABA9E)),
       ),
-      home: const MyStarterPage(title: 'Flutter Demo Home Page'),
+      home: const MyStarterPage(title: 'Happy Tiger'),
     );
   }
 }
@@ -58,66 +60,152 @@ class MyStarterPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyStarterPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Color(0x002B2D42),
-      appBar: AppBar(
+      backgroundColor: Color(0xFF2B2D42),
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
       body: Center(
 
         child: Column(
 
           mainAxisAlignment: .center,
           children: [
-            Text('With Courage', 
-                  style: GoogleFonts.merriweather(
-                  color: Colors.white,
-                  fontSize: 40.0,
+            ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ).createShader(bounds),
+              child: Text(
+                'Happy Tiger:',
+                style: GoogleFonts.merriweather(
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
-                ),),
-            Text('comes Happiness', 
-                        style:  GoogleFonts.merriweather(
-                        color: Colors.white,
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                  ),),
-            SizedBox(height: 40),
-            ElevatedButton(onPressed: () async{  
-                                      await createSession();
-                                       }, 
-                            child: Text("New Session"),
-                          ),
-            ElevatedButton(onPressed: () {  }, 
-                            child: Text("Load Session"),),
-            Text('Dedicated to Fronchetti and his Drunk Tiger robotics project', 
-                  style: GoogleFonts.merriweather(
                   color: Colors.white,
-                  fontSize: 15.0,
+                ),
+              ),
+            ),
+            SizedBox(height: 15),
+            ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ).createShader(bounds),
+              child: Text(
+                'With Courage',
+                style: GoogleFonts.merriweather(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ).createShader(bounds),
+              child: Text(
+                'comes Happiness',
+                style: GoogleFonts.merriweather(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewSession()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFAABA9E),
+              ),
+              child: Text(
+                'New Session',
+                style: GoogleFonts.merriweather(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoadSession()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFAABA9E),
+              ),
+              child: Text(
+                'Load Session',
+                style: GoogleFonts.merriweather(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 40),
+            ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ).createShader(bounds),
+              child: Text(
+                'Dedicated to Fronchetti',
+                style: GoogleFonts.merriweather(
+                  fontSize: 15,
                   fontStyle: FontStyle.italic,
-                ),),
-            Image.asset("Fronchetti_Glasses.png")
-          ],
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
+            Image.asset("assets/images/Fronchetti_Glasses.png", width: 580, height: 300, fit: BoxFit.fill),
+            SizedBox(height: 8),
+            ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [Color(0xFFAABA9E), Color(0xFFFCB97D)],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ).createShader(bounds),
+              child: Text(
+                'and his Drunk Tiger robotics project',
+                style: GoogleFonts.merriweather(
+                  fontSize: 15,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ]
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Explain()),
+                );
+        },
+        tooltip: 'Nav -> Explanation',
+        child: const Icon(Icons.question_mark_rounded,
+                          size: 40.0,),
+                          
       ),
-      
     );
   }
 }
